@@ -29,7 +29,9 @@
     // パック数選択の更新
     var selectorCount = document.getElementById('Quantity1');
     var count = getParameter("count");
-    selectorCount.value = count;
+    if (count) {
+      selectorCount.value = count;
+    }
   }
 </script>
 
