@@ -1,5 +1,5 @@
-<div id="top-picture" class='custom-content'>
-  <img src='http://lifecheating.com/wp-content/uploads/2014/07/dogkiss.jpg'>
+<div id="top-picture" class="custom-content">
+  <img src="https://cdn.shopify.com/s/files/1/2115/6795/files/2018-01-19_14.16.55.png?9813748085116023006">
 </div>
 
 <form id="form" class='custom-form custom-content'>
@@ -159,7 +159,7 @@
       <p>体重</p>
     </div>
     <div class="form-item-content"> 
-      <input name="weight" type="number" placeholder="体重" />
+      <input name="weight" type="number" placeholder="体重" step="0.1" />
       <p class='sub-label'>kg</p>
     </div>
     <div class="form-item-error"></div>
@@ -378,39 +378,24 @@
   function updateProductListDom(calories) {
     productList = [
       {
-        name: 'ビーフ&ポテト',
-        id: 'product',
-        gram: calculateGram(calories * 0.82786)
+        name: 'チキン＆ライス',
+        id: 'chicken-rice',
+        gram: calculateGram(calories * 0.759)
       },
       {
-        name: 'チキン&キノコ',
-        id: 'product-2',
-        gram: calculateGram(calories * 1.06695)
+        name: 'フィッシュ＆ポテト',
+        id: 'fish-potato',
+        gram: calculateGram(calories * 0.732)
       },
       {
-        name: 'チキン&マカロニ',
-        id: 'product-6',
-        gram: calculateGram(calories * 1.10156)
+        name: 'ビーフ＆ポテト',
+        id: 'beef-poteto',
+        gram: calculateGram(calories * 0.693)
       },
       {
-        name: 'チキン&ブロッコリー',
-        id: 'product-1',
-        gram: calculateGram(calories * 0.82009)
-      },
-      {
-        name: 'チキン&ライス', // TODO: チキン＆玄米…？
-        id: 'product-4',
-        gram: calculateGram(calories * 0.91379)
-      },
-      {
-        name: 'フィッシュ&ポテト',
-        id: 'product-3',
-        gram: calculateGram(calories * 1.08823)
-      },
-      {
-        name: 'フィッシュ&ライス',
-        id: 'product-5',
-        gram: calculateGram(calories * 1.21212)
+        name: 'ラム＆ライス',
+        id: 'rum-rice',
+        gram: calculateGram(calories * 0.577)
       }
     ];
 
@@ -453,42 +438,47 @@
       calories = 4.0 * (70 * (weight ** 0.75));
     } else if (age == 200) {
       // 4ヶ月 - 1歳
-      calories = 2.0 * (70 * (weight ** 0.75));
+      calories = 1.5 * (70 * (weight ** 0.75));
     } else if (age > 0 && age < 7) {
+      // 1歳 - 6歳
       if (castration == 1) {
+        // 去勢していない
         if (activeLevel == 1) {
-          calories = 1.8 * (70 * (weight ** 0.75));
+          calories = 1.45 * (70 * (weight ** 0.75));
         } else if (activeLevel == 2) {
-          calories = 1.9 * (70 * (weight ** 0.75));
+          calories = 1.6 * (70 * (weight ** 0.75));
         } else {
           calories = 1.4 * (70 * (weight ** 0.75));
         } 
       } else {
+        // 去勢している
         if (activeLevel == 1) {
-          calories = 1.6 * (70 * (weight ** 0.75));
+          calories = 1.25 * (70 * (weight ** 0.75));
         } else if (activeLevel == 2) {
-          calories = 1.7 * (70 * (weight ** 0.75));
-        } else {
           calories = 1.4 * (70 * (weight ** 0.75));
+        } else {
+          calories = 1.2 * (70 * (weight ** 0.75));
         }
       }
     } else {
       // 7歳以上
       if (castration == 1) {
+        // 去勢していない
         if (activeLevel == 1) {
-          calories = 1.4 * (70 * (weight ** 0.75));
-        } else if (activeLevel == 2) {
-          calories = 1.4 * (70 * (weight ** 0.75));
-        } else {
           calories = 1.3 * (70 * (weight ** 0.75));
+        } else if (activeLevel == 2) {
+          calories = 1.45 * (70 * (weight ** 0.75));
+        } else {
+          calories = 1.2 * (70 * (weight ** 0.75));
         }
       } else {
+        // 去勢している
         if (activeLevel == 1) {
-          calories = 1.4 * (70 * (weight ** 0.75));
+          calories = 1.1 * (70 * (weight ** 0.75));
         } else if (activeLevel == 2) {
-          calories = 1.4 * (70 * (weight ** 0.75));
+          calories = 1.25 * (70 * (weight ** 0.75));
         } else {
-          calories = 1.3 * (70 * (weight ** 0.75));
+          calories = 1.0 * (70 * (weight ** 0.75));
         }
       }
     }
