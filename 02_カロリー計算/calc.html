@@ -171,8 +171,10 @@
     <div class="form-item-content"> 
       <select name="age" class='full-width'>
         <option value="0">年齢を選択してください</option>
+        <!-- 
         <option value="100">0 - 4ヶ月</option>
         <option value="200">4ヶ月 - 1歳未満</option>
+        -->
         <option value="1">1歳</option>
         <option value="2">2歳</option>
         <option value="3">3歳</option>
@@ -376,51 +378,57 @@
 
   // $('#product-list') の要素の出力
   function updateProductListDom(calories) {
-    productList = [
-      {
-        name: 'チキン＆ライス',
-        id: 'chicken-rice',
-        gram: calculateGram(calories * 0.759),
-        img: 'https://cdn.shopify.com/s/files/1/2115/6795/files/b00f2c3966be66e580bf324c65ededb2.png?14299376621769663929'
-      },
-      {
-        name: 'フィッシュ＆ポテト',
-        id: 'fish-potato',
-        gram: calculateGram(calories * 0.732),
-        img: 'https://cdn.shopify.com/s/files/1/2115/6795/files/eb4d84eb89780287e46453600317a40d.png?14299376621769663929'
-      },
-      {
-        name: 'ビーフ＆ポテト',
-        id: 'beef-poteto',
-        gram: calculateGram(calories * 0.693),
-        img: 'https://cdn.shopify.com/s/files/1/2115/6795/files/5aa7f7e8d9e5054812ab70cbb588e9b7.png?14299376621769663929'
-      },
-      {
-        name: 'ラム＆ライス',
-        id: 'rum-rice',
-        gram: calculateGram(calories * 0.577),
-        img: 'https://cdn.shopify.com/s/files/1/2115/6795/files/88991d70a90fed71b74b7238c22294b9.png?14299376621769663929'
+    // 一日の消費カロリーが 1300kcal を超える場合、配送を一旦控える
+    if (calories > 1300) {
+      p = $('<p>大変申し訳ありません。1kg 以上の発送は現在行っておりません。2018/12 以降に対応完了予定です。</p>')
+      $('#product-list').append(p);
+    } else {
+      productList = [
+        {
+          name: 'チキン＆ライス',
+          id: 'chicken-rice',
+          gram: calculateGram(calories * 0.759),
+          img: 'https://cdn.shopify.com/s/files/1/2115/6795/files/b00f2c3966be66e580bf324c65ededb2.png?14299376621769663929'
+        },
+        {
+          name: 'フィッシュ＆ポテト',
+          id: 'fish-potato',
+          gram: calculateGram(calories * 0.732),
+          img: 'https://cdn.shopify.com/s/files/1/2115/6795/files/eb4d84eb89780287e46453600317a40d.png?14299376621769663929'
+        },
+        {
+          name: 'ビーフ＆ポテト',
+          id: 'beef-poteto',
+          gram: calculateGram(calories * 0.693),
+          img: 'https://cdn.shopify.com/s/files/1/2115/6795/files/5aa7f7e8d9e5054812ab70cbb588e9b7.png?14299376621769663929'
+        },
+        {
+          name: 'ラム＆ライス',
+          id: 'rum-rice',
+          gram: calculateGram(calories * 0.577),
+          img: 'https://cdn.shopify.com/s/files/1/2115/6795/files/88991d70a90fed71b74b7238c22294b9.png?14299376621769663929'
+        }
+      ];
+
+      // $('#product-list') の要素内を一旦クリアする
+      $('#product-list').empty();
+
+      // 要素構築
+      table = $("<table id='product-list-table'></table>");
+      thead = $('<thead>');
+      tbody = $('<tbody>');
+      thead.append($("<tr><th>商品画像</th><th>商品名</th><th>1日に必要なグラム数(g)</th><th></th><th></th><th></th></tr>"));
+      for (i = 0; i < productList.length; i++) {
+        item = productList[i]
+        productUrl = "https://mydogstandard.com/products/" + item.id
+        tbody.append($("<tr><td><img src='" + item.img + "'></td><td>" + item.name + "</td><td class='gram'>" + item.gram + "g</td><td><a href='" + productUrl + "?gram=" + item.gram + "'><button type='button' class='btn btn-primary product-detail'>個別商品</button></a></td><td><a href='" + productUrl + "?gram=" + item.gram + "&count=14'><button type='button' class='btn btn-primary product-detail'>14パック</button></a></td><td><a href='" + productUrl + "?gram=" + item.gram + "&count=28'><button type='button' class='btn btn-primary product-detail'>28パック</button></a></td></tr>"));
       }
-    ];
+      table.append(thead);
+      table.append(tbody);
 
-    // $('#product-list') の要素内を一旦クリアする
-    $('#product-list').empty();
-
-    // 要素構築
-    table = $("<table id='product-list-table'></table>");
-    thead = $('<thead>');
-    tbody = $('<tbody>');
-    thead.append($("<tr><th>商品画像</th><th>商品名</th><th>1日に必要なグラム数(g)</th><th></th><th></th><th></th></tr>"));
-    for (i = 0; i < productList.length; i++) {
-      item = productList[i]
-      productUrl = "https://mydogstandard.com/products/" + item.id
-      tbody.append($("<tr><td><img src='" + item.img + "'></td><td>" + item.name + "</td><td class='gram'>" + item.gram + "g</td><td><a href='" + productUrl + "?gram=" + item.gram + "'><button type='button' class='btn btn-primary product-detail'>個別商品</button></a></td><td><a href='" + productUrl + "?gram=" + item.gram + "&count=14'><button type='button' class='btn btn-primary product-detail'>14パック</button></a></td><td><a href='" + productUrl + "?gram=" + item.gram + "&count=28'><button type='button' class='btn btn-primary product-detail'>28パック</button></a></td></tr>"));
+      // $('#product-list') に必要なカロリー数に応じた g 数を、商品毎に計算して出力する
+      $('#product-list').append(table);
     }
-    table.append(thead);
-    table.append(tbody);
-
-    // $('#product-list') に必要なカロリー数に応じた g 数を、商品毎に計算して出力する
-    $('#product-list').append(table);
   }
 
   // グラム計算
