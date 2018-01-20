@@ -410,7 +410,7 @@
     for (i = 0; i < productList.length; i++) {
       item = productList[i]
       productUrl = "https://mydogstandard.com/products/" + item.id
-      tbody.append($("<tr><td>" + item.name + "</td><td class='gram'>" + item.gram + "g</td><td><a href='" + productUrl + "?gram=" + item.gram + "'><button type='button' class='btn btn-primary product-detail'>個別商品</button></a></td><td><a href='" + productUrl + "?gram=" + item.gram + "?count=14'><button type='button' class='btn btn-primary product-detail'>14パック</button></a></td><td><a href='" + productUrl + "?gram=" + item.gram + "?count=28'><button type='button' class='btn btn-primary product-detail'>28パック</button></a></td></tr>"));
+      tbody.append($("<tr><td>" + item.name + "</td><td class='gram'>" + item.gram + "g</td><td><a href='" + productUrl + "?gram=" + item.gram + "'><button type='button' class='btn btn-primary product-detail'>個別商品</button></a></td><td><a href='" + productUrl + "?gram=" + item.gram + "&count=14'><button type='button' class='btn btn-primary product-detail'>14パック</button></a></td><td><a href='" + productUrl + "?gram=" + item.gram + "&count=28'><button type='button' class='btn btn-primary product-detail'>28パック</button></a></td></tr>"));
     }
     table.append(thead);
     table.append(tbody);
