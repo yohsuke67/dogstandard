@@ -406,10 +406,11 @@
     table = $("<table id='product-list-table'></table>");
     thead = $('<thead>');
     tbody = $('<tbody>');
-    thead.append($("<tr><th>商品名</th><th>1日に必要なグラム数(g)</th><th></th><th></th></tr>"));
+    thead.append($("<tr><th>商品名</th><th>1日に必要なグラム数(g)</th><th></th><th></th><th></th></tr>"));
     for (i = 0; i < productList.length; i++) {
       item = productList[i]
-      tbody.append($("<tr><td>" + item.name + "</td><td class='gram'>" + item.gram + "g</td><td><a href='https://mydogstandard.com/products/" + item.id + "?gram=" + item.gram + "'><button type='button' class='btn btn-primary product-detail'>個別商品</button></a></td><td><a href='https://www.google.com'><button type='button' class='btn btn-primary product-detail'>お得パック便</button></a></td></tr>"));
+      productUrl = "https://mydogstandard.com/products/" + item.id
+      tbody.append($("<tr><td>" + item.name + "</td><td class='gram'>" + item.gram + "g</td><td><a href='" + productUrl + "?gram=" + item.gram + "'><button type='button' class='btn btn-primary product-detail'>個別商品</button></a></td><td><a href='" + productUrl + "?gram=" + item.gram + "?count=14'><button type='button' class='btn btn-primary product-detail'>14パック</button></a></td><td><a href='" + productUrl + "?gram=" + item.gram + "?count=28'><button type='button' class='btn btn-primary product-detail'>28パック</button></a></td></tr>"));
     }
     table.append(thead);
     table.append(tbody);
