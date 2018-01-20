@@ -417,11 +417,11 @@
       table = $("<table id='product-list-table'></table>");
       thead = $('<thead>');
       tbody = $('<tbody>');
-      thead.append($("<tr><th>商品画像</th><th>商品名</th><th>1日に必要なグラム数(g)</th><th></th><th></th><th></th></tr>"));
+      thead.append($("<tr><th>商品画像</th><th>商品名</th><th>1日に必要なグラム数(g)</th><th></th></tr>"));
       for (i = 0; i < productList.length; i++) {
         item = productList[i]
         productUrl = "https://mydogstandard.com/products/" + item.id
-        tbody.append($("<tr><td><img src='" + item.img + "'></td><td>" + item.name + "</td><td class='gram'>" + item.gram + "g</td><td><a href='" + productUrl + "?gram=" + item.gram + "'><button type='button' class='btn btn-primary product-detail'>個別商品</button></a></td><td><a href='" + productUrl + "?gram=" + item.gram + "&count=14'><button type='button' class='btn btn-primary product-detail'>14パック</button></a></td><td><a href='" + productUrl + "?gram=" + item.gram + "&count=28'><button type='button' class='btn btn-primary product-detail'>28パック</button></a></td></tr>"));
+        tbody.append($("<tr><td class='td-img'><img src='" + item.img + "'></td><td>" + item.name + "</td><td class='td-gram'>" + item.gram + "g</td><td class='td-actions'><a href='" + productUrl + "?gram=" + item.gram + "'><button type='button' class='btn btn-primary product-detail'>個別商品</button></a><a href='" + productUrl + "?gram=" + item.gram + "&count=14'><button type='button' class='btn btn-primary product-detail'>14パック</button></a><a href='" + productUrl + "?gram=" + item.gram + "&count=28'><button type='button' class='btn btn-primary product-detail'>28パック</button></a></td></tr>"));
       }
       table.append(thead);
       table.append(tbody);
@@ -572,7 +572,13 @@
     color: #FFF;
     border-bottom: 1px solid #000;
   }
-  #product-list-table tr .gram {
+  #product-list-table tr .td-img {
+    width: 150px;
+  }
+  #product-list-table tr .td-actions {
+    width: 200px;
+  }
+  #product-list-table tr .td-gram {
     font-size: 18px;
   }
   #product-list-table tr:nth-child(2n) {
@@ -581,6 +587,7 @@
   #product-list-table .product-detail {
     padding: 8px 15px;
     font-size: 12px;
+    margin-bottom: 5px;
   }
   /* 説明書き */
   #description {
@@ -600,11 +607,47 @@
       font-size: 13px;
     }
 
+    #product-list-table {
+      overflow-x: scroll;
+    }
     #product-list-table thead tr {
       font-size: 13px;
     }
-    #product-list-table tr .gram {
+    #product-list-table tr .td-img {
+      width: 100px;
+    }
+    #product-list-table tr .td-actions {
+      width: 100px;
+    }
+    #product-list-table tr .td-gram {
       font-size: 14px;
+    }
+
+    /* レイアウトをスマホ用に修正する */
+    #product-list-table {
+      display: block;
+      width: 100%;
+      margin: 0 -10px;
+    }
+    #product-list-table thead {
+      display: none;
+    }
+    #product-list-table tbody {
+      display: block;
+      width: auto;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    #product-list-table th {
+      display: block;
+      width:auto;
+    }
+    #product-list-table tbody tr {
+      display: inline-block;
+      margin: 0 -3px;
+    }
+    #product-list-table td {
+      display: block;
     }
 
     #description {
