@@ -569,7 +569,7 @@
   /* 商品リストテーブル */
   #product-list-table thead tr {
     background: #999 !important;
-    color: #FFF;
+    color: #fff;
     border-bottom: 1px solid #000;
   }
   #product-list-table tr .td-img {
@@ -581,8 +581,11 @@
   #product-list-table tr .td-gram {
     font-size: 18px;
   }
-  #product-list-table tr:nth-child(2n) {
-    background: #eee;
+  #product-list-table tr:nth-child(odd) {
+    background: #e8e8e8;
+  }
+  #product-list-table tr:nth-child(even) {
+    background: #f4f4f4;
   }
   #product-list-table .product-detail {
     padding: 8px 15px;
@@ -614,7 +617,7 @@
       font-size: 13px;
     }
     #product-list-table tr .td-img {
-      width: 100px;
+      width: 150px;
     }
     #product-list-table tr .td-actions {
       width: 100px;
@@ -643,11 +646,15 @@
       width:auto;
     }
     #product-list-table tbody tr {
+      width: 210px;
       display: inline-block;
       margin: 0 -3px;
     }
     #product-list-table td {
       display: block;
+      padding: 0;
+      margin: 10px auto;
+      text-align: center;
     }
 
     #description {
