@@ -159,7 +159,7 @@
       <p>体重</p>
     </div>
     <div class="form-item-content"> 
-      <input name="weight" type="number" placeholder="体重" step="0.1" />
+      <input name="weight" class="with-sub-label" type="text" value="0.1" />
       <p class='sub-label'>kg</p>
     </div>
     <div class="form-item-error"></div>
@@ -253,7 +253,7 @@
     // 性別
     sex = $('#form [name=sex]:checked').val() == null ? 0 : Number($('#form [name=sex]:checked').val());
     // 体重
-    weight = Number($('#form [name=weight]').val());
+    weight = $('#form [name=weight]').val();
     // 年齢
     age = Number($('#form [name=age]').val());
     // 去勢
@@ -301,6 +301,10 @@
       $('#form-item-weight').find('.form-item-label').css({'color': 'red'});
       $('#form-item-weight').find('.form-item-error').append($('<p>').text('体重が入力されていません'));
     }
+    if (errors.weightValue) {
+      $('#form-item-weight').find('.form-item-label').css({'color': 'red'});
+      $('#form-item-weight').find('.form-item-error').append($('<p>').text('体重は半角数字で入力してください(小数点は使用可能です)'));
+    }
     if (errors.age) {
       $('#form-item-age').find('.form-item-label').css({'color': 'red'});
       $('#form-item-age').find('.form-item-error').append($('<p>').text('年齢が選択されていません'));
@@ -328,6 +332,7 @@
       breed: false,
       sex: false,
       weight: false,
+      weightValue: false,
       age: false,
       castration: false,
       activeLevel: false
@@ -345,12 +350,11 @@
       errors.sex = true
       errorsCount++;
     }
-    if (weight == 0) {
+    if (weight == '') {
       errors.weight = true;
       errorsCount++;
-    }
-    if (age == 0) {
-      errors.age = true;
+    } else if (weight.match(/[^.0-9]+/)) {
+      errors.weightValue = true;
       errorsCount++;
     }
     if (castration == 0) {
@@ -529,12 +533,15 @@
   .custom-form .form-item .form-item-content .full-width {
     width: 100%;
   }
+  .custom-form .form-item .form-item-content .with-sub-label {
+    width: 110px;
+  }
   .custom-form .form-item .form-item-content .sub-label {
     font-size: 15px;
     position: absolute;
     font-weight: bold;
-    top: -14px;
-    left: 115px;
+    top: -10px;
+    left: 120px;
   }
   .custom-form .form-item .form-item-error {
     margin-left: 20%;
