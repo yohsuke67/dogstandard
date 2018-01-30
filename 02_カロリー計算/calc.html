@@ -382,9 +382,17 @@
 
   // $('#product-list') の要素の出力
   function updateProductListDom(calories) {
-    // 一日の消費カロリーが 1300kcal を超える場合、配送を一旦控える
-    if (calories > 1300) {
+    if (calories <= 130) {
+      // 一日の消費カロリーが 130kcal 以下の場合、取扱がない旨を表示する
+      // 130kcal 以下で、1 パックあたり 80g のメニューがでてくる
+      p = $('<p>大変申し訳ありません。80g 以下の発送は現在行っておりません。</p>')
+      $('#product-list').empty();
+      $('#product-list').append(p);
+    } else if (calories >= 1300) {
+      // 一日の消費カロリーが 1300kcal を超える場合、配送を一旦控える
+      // 1300kcal 以上で、1 パックあたり 1kg のメニューがでてくる
       p = $('<p>大変申し訳ありません。1kg 以上の発送は現在行っておりません。2018/12 以降に対応完了予定です。</p>')
+      $('#product-list').empty();
       $('#product-list').append(p);
     } else {
       productList = [
