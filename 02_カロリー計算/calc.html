@@ -433,7 +433,29 @@
       for (i = 0; i < productList.length; i++) {
         item = productList[i]
         productUrl = "https://mydogstandard.com/products/" + item.id
-        tbody.append($("<tr><td class='td-img'><img src='" + item.img + "'></td><td class='td-product-name'><p>" + item.name + "</p><p class='product-sub-description'>1日必要食事量</p></td><td class='td-gram'>" + item.gram + "g</td><td class='td-actions'><a href='" + productUrl + "?gram=" + item.gram + "' target='_blank'><button type='button' class='btn btn-primary product-detail'>個別商品</button></a><a href='" + productUrl + "?gram=" + item.gram + "&count=14' target='_blank'><button type='button' class='btn btn-primary product-detail'>14パック</button></a><a href='" + productUrl + "?gram=" + item.gram + "&count=28' target='_blank'><button type='button' class='btn btn-primary product-detail'>28パック</button></a></td></tr>"));
+        tbody.append($(
+          "<tr>" +
+            "<td class='td-img'>"  +
+              "<img src='" + item.img + "'>" +
+            "</td>" +
+            "<td class='td-product-name'>" +
+              "<p>" + item.name + "</p>" +
+              "<p class='product-sub-description'>1日必要食事量</p>" +
+            "</td>" +
+            "<td class='td-gram'>" + item.gram + "g</td>" +
+            "<td class='td-actions'>" +
+              "<a href='" + productUrl + "?gram=" + item.gram + "' target='_blank'>" +
+                "<button type='button' class='btn btn-primary product-detail'>個別商品</button>" +
+              "</a>" +
+              "<a href='" + productUrl + "?gram=" + item.gram + "&count=14' target='_blank'>" +
+                "<button type='button' class='btn btn-primary product-detail'>14パック</button>" +
+              "</a>" +
+              "<a href='" + productUrl + "?gram=" + item.gram + "&count=28' target='_blank'>" +
+                "<button type='button' class='btn btn-primary product-detail'>28パック</button>" +
+              "</a>" +
+            "</td>" +
+          "</tr>"
+        ));
       }
       table.append(thead);
       table.append(tbody);
