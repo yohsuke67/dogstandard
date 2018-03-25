@@ -1,5 +1,5 @@
 <div id="top-picture" class="custom-content">
-  <img src="https://cdn.shopify.com/s/files/1/2115/6795/files/2018-01-19_14.16.55.png?9813748085116023006">
+  <img src="https://cdn.shopify.com/s/files/1/2115/6795/files/S__14868495.jpg?14162557599151760221">
 </div>
 
 <form id="form" class='custom-form custom-content'>
@@ -149,8 +149,11 @@
       <p>性別</p>
     </div>
     <div class="form-item-content"> 
-      <input type="radio" name="sex" value="1">メス</input>
-      <input type="radio" name="sex" value="2">オス</input>
+      <select name="sex" class='full-width'>
+        <option value="0">性別を選択してください</option>
+        <option value="1">メス</option>
+        <option value="2">オス</option>
+      </select>
     </div>
     <div class="form-item-error"></div>
   </div>
@@ -251,7 +254,7 @@
     // 犬種(カロリー計算ロジックには使用しない)
     breed = Number($('#form [name=breed]').val());
     // 性別
-    sex = $('#form [name=sex]:checked').val() == null ? 0 : Number($('#form [name=sex]:checked').val());
+    sex = Number($('#form [name=sex]').val());
     // 体重
     weight = $('#form [name=weight]').val();
     // 年齢
@@ -279,7 +282,7 @@
       // $('#result') の要素の出力
       updateResultDom(name, calories);
       // $('#product-list') の要素の出力
-      updateProductListDom(calories);
+      updateProductListDom(calories, name);
     }
   });
 
@@ -381,7 +384,7 @@
   }
 
   // $('#product-list') の要素の出力
-  function updateProductListDom(calories) {
+  function updateProductListDom(calories, displayName) {
     if (calories <= 130) {
       // 一日の消費カロリーが 130kcal 以下の場合、取扱がない旨を表示する
       // 130kcal 以下で、1 パックあたり 80g のメニューがでてくる
@@ -444,14 +447,8 @@
             "</td>" +
             "<td class='td-gram'>" + item.gram + "g</td>" +
             "<td class='td-actions'>" +
-              "<a href='" + productUrl + "?gram=" + item.gram + "' target='_blank'>" +
+              "<a href='" + productUrl + "?g=" + item.gram + "&n=" + displayName + "&p=" + item.name + "' target='_blank'>" +
                 "<button type='button' class='btn btn-primary product-detail'>個別商品</button>" +
-              "</a>" +
-              "<a href='" + productUrl + "?gram=" + item.gram + "&count=14' target='_blank'>" +
-                "<button type='button' class='btn btn-primary product-detail'>14パック</button>" +
-              "</a>" +
-              "<a href='" + productUrl + "?gram=" + item.gram + "&count=28' target='_blank'>" +
-                "<button type='button' class='btn btn-primary product-detail'>28パック</button>" +
               "</a>" +
             "</td>" +
           "</tr>"
@@ -474,7 +471,7 @@
   // 表示名
   function displayName(name, sex) {
     // sex: 1..メス/2..オス
-    return name + (sex == '1' ? 'ちゃん' : 'くん');
+    return name + (sex == 1 ? 'ちゃん' : 'くん');
   }
   
   // カロリー計算

@@ -16,35 +16,13 @@
     return "";
   }
 
-  // 取得したパラメータで、グラム数とパック数を更新する
+  // 取得したパラメータを表示する
   window.onload = function() {
-    // グラム数選択の更新
-    var selectorGram = document.getElementById('productSelect--product-template-option-0');
-    var targetGram = getParameter("gram")+"g";
-    for (var i = 0; i < selectorGram.options.length; i++) {
-      if (selectorGram.options[i].value == targetGram) {
-        selectorGram.options[i].selected = true;
-      }
-    }
-    // パック数選択の更新
-    var selectorCount = document.getElementById('Quantity1');
-    var count = getParameter("count");
-    if (count) {
-      selectorCount.value = count;
-    }
-    // 値段の更新
-    var selectorPrice = document.getElementById('ProductPrice');
-    var targetVariantPrice = null;
-    for (var i = 0;  i < product.variants.length; i++) {
-      variant = product.variants[i];
-      if (variant.title == targetGram) {
-        targetVariantPrice = variant.price;
-        break;
-      }
-    }
-    if (targetVariantPrice) {
-      // 何故か 0 が二つついているので、文字列化してスライスし、¥ を先頭につける
-      selectorPrice.innerHTML  = '¥' + String(targetVariantPrice).slice(0, -2);
+    var gram = getParameter("g");
+    var name = getParameter("n");
+    var product = getParameter("p");
+    if (gram && name && product) {
+      $('#result-of-calorie-calculation').append("<div style='border: 1px solid #000; margin: 15px 0; padding-top: 15px;'" + "<p>" + product + "における、" + name + "の一食に必要はグラム数は" + gram + "gです。</p><p>下記グラム数選択の参考にしてください。</p></div>");
     }
   }
 </script>
